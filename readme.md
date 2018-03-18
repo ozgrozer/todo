@@ -3,12 +3,12 @@ A challenge to myself, to learn all programming languages, while making a todo a
 
 ## Spec
 - Functions:
-  - writeFile ()
-  - readFile ()
-  - addTask (taskTitle)
-  - updateTask (taskId, taskTitle)
-  - deleteTask (taskId)
-  - listTasks ()
+  - `writeFile ()`
+  - `readFile ()`
+  - `addTask (taskTitle)`
+  - `updateTask (taskId, taskTitle)`
+  - `deleteTask (taskId)`
+  - `listTasks ()`
 - Commands:
   - `$ <app> -a|--add "<taskTitle>"` (Add new task)
   - `$ <app> -l|--list` (List all tasks)
