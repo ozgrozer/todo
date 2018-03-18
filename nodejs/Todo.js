@@ -27,19 +27,19 @@ class Todo {
     const lastKey = parseInt(Object.keys(this.dbFileContent).pop()) || 0
     const newTaskId = lastKey + 1
     this.dbFileContent[newTaskId] = taskTitle
-    return this.writeFile() ? 'added' : 'error'
+    return this.writeFile() ? `added: ${taskTitle}` : 'error'
   }
 
   updateTask (taskId, taskTitle) {
     if (this.dbFileContent[taskId]) {
       this.dbFileContent[taskId] = taskTitle
-      return this.writeFile() ? 'updated' : 'error'
+      return this.writeFile() ? `updated: ${taskId}` : 'error'
     }
   }
 
   deleteTask (taskId) {
     delete this.dbFileContent[taskId]
-    return this.writeFile() ? 'deleted' : 'error'
+    return this.writeFile() ? `deleted: ${taskId}` : 'error'
   }
 
   listTasks () {
