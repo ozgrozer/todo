@@ -1,14 +1,14 @@
 const todo = require('./Todo.js')
 
-const a1 = process.argv[2]
-const a2 = process.argv[3]
-const a3 = process.argv[4]
+const argv1 = process.argv[2]
+const argv2 = process.argv[3]
+const argv3 = process.argv[4]
 
 let result = ''
-switch (a1) {
+switch (argv1) {
   case '-a':
   case '--add':
-    result = todo.addTask(a2)
+    result = todo.addTask(argv2)
     break
   case '-l':
   case '--list':
@@ -16,11 +16,11 @@ switch (a1) {
     break
   case '-u':
   case '--update':
-    result = todo.updateTask(a2, a3)
+    result = todo.updateTask(argv2, argv3)
     break
   case '-d':
   case '--delete':
-    result = todo.deleteTask(a2)
+    result = todo.deleteTask(argv2)
     break
   default:
     result = `
