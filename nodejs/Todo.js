@@ -45,7 +45,7 @@ class Todo {
   listTasks () {
     let tasks = 'ID\tTask\n===================='
     Object.keys(this.dbFileContent).map((key) => {
-      tasks += `\n${key}:\t${this.dbFileContent[key]}`
+      tasks += `\n#${key}\t${this.dbFileContent[key]}`
     })
     return tasks
   }
