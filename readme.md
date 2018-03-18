@@ -18,7 +18,7 @@ A challenge to myself, to learn all programming languages, while making a todo a
 
 ## Programming Languages
 - [x] [Node.js](/nodejs)
-- [ ] PHP
+- [x] [PHP](/php)
 - [ ] Python
 - [ ] Ruby
 - [ ] Rust
