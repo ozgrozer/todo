@@ -24,8 +24,8 @@ class Todo {
   }
 
   function addTask ($taskTitle) {
-    $lastKey = @intval(array_pop(array_keys($this->dbFileContent))) || 0;
-    $newTaskId = $lastKey + 1;
+    $lastKey = intval(array_pop(array_keys($this->dbFileContent)));
+    $newTaskId = $lastKey ? ($lastKey + 1) : 1;
     $this->dbFileContent[$newTaskId] = $taskTitle;
     return $this->writeFile() ? "added: $taskTitle" : 'error';
   }
