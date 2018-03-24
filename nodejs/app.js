@@ -5,25 +5,20 @@ const argv2 = process.argv[3]
 const argv3 = process.argv[4]
 
 let result = ''
-switch (argv1) {
-  case '-a':
-  case '--add':
-    result = todo.addTask(argv2)
-    break
-  case '-l':
-  case '--list':
-    result = todo.listTasks()
-    break
-  case '-u':
-  case '--update':
-    result = todo.updateTask(argv2, argv3)
-    break
-  case '-d':
-  case '--delete':
-    result = todo.deleteTask(argv2)
-    break
-  default:
-    result = `
+if (argv1 === '-a' || argv1 === '--add') {
+  result = todo.addTask(argv2)
+} else if (argv1 === '-l' || argv1 === '--list') {
+  result = todo.listTasks()
+} else if (argv1 === '-e' || argv1 === '--edit') {
+  result = todo.editTask(argv2, argv3)
+} else if (argv1 === '-d' || argv1 === '--done') {
+  result = todo.markAsDone(argv2)
+} else if (argv1 === '-u' || argv1 === '--undone') {
+  result = todo.markAsUndone(argv2)
+} else if (argv1 === '-r' || argv1 === '--remove') {
+  result = todo.removeTask(argv2)
+} else {
+  result = `
 Available commands:
 
 Add new task:
@@ -32,15 +27,21 @@ $ node app.js -a|--add "<taskTitle>"
 List all tasks:
 $ node app.js -l|--list
 
-Update task:
-$ node app.js -u|--update <taskId> "<taskTitle>"
+Edit task:
+$ node app.js -e|--edit <taskId> "<taskTitle>"
 
-Delete task:
-$ node app.js -d|--delete <taskId>
+Mark as done:
+$ node app.js -d|--done <taskId>
 
-Available commands:
+Mark as undone:
+$ node app.js -u|--undone <taskId>
+
+Remove task:
+$ node app.js -r|--remove <taskId>
+
+This screen:
 $ node app.js
-    `
+  `
 }
 
 console.log(result)

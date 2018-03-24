@@ -24,28 +24,46 @@ class Todo {
   }
 
   addTask (taskTitle) {
-    const lastKey = parseInt(Object.keys(this.dbFileContent).pop()) || 0
-    const newTaskId = lastKey + 1
-    this.dbFileContent[newTaskId] = taskTitle
+    const lastKey = parseInt(Object.keys(this.dbFileContent).pop())
+    const newTaskId = lastKey ? (lastKey + 1) : 1
+    this.dbFileContent[newTaskId] = { title: taskTitle, done: 0 }
     return this.writeFile() ? `added: ${taskTitle}` : 'error'
   }
 
-  updateTask (taskId, taskTitle) {
+  editTask (taskId, taskTitle) {
     if (this.dbFileContent[taskId]) {
-      this.dbFileContent[taskId] = taskTitle
-      return this.writeFile() ? `updated: ${taskId}` : 'error'
+      this.dbFileContent[taskId].title = taskTitle
+      return this.writeFile() ? `edited: ${taskId}` : 'error'
     }
   }
 
-  deleteTask (taskId) {
-    delete this.dbFileContent[taskId]
-    return this.writeFile() ? `deleted: ${taskId}` : 'error'
+  markAsDone (taskId) {
+    if (this.dbFileContent[taskId]) {
+      this.dbFileContent[taskId].done = 1
+      return this.writeFile() ? `marked as done: ${taskId}` : 'error'
+    }
+  }
+
+  markAsUndone (taskId) {
+    if (this.dbFileContent[taskId]) {
+      this.dbFileContent[taskId].done = 0
+      return this.writeFile() ? `marked as undone: ${taskId}` : 'error'
+    }
+  }
+
+  removeTask (taskId) {
+    if (this.dbFileContent[taskId]) {
+      delete this.dbFileContent[taskId]
+      return this.writeFile() ? `removed: ${taskId}` : 'error'
+    }
   }
 
   listTasks () {
-    let tasks = 'ID\tTask\n===================='
-    Object.keys(this.dbFileContent).map((key) => {
-      tasks += `\n#${key}\t${this.dbFileContent[key]}`
+    let tasks = 'ID\tDone\tTask\n===================='
+    Object.keys(this.dbFileContent).map((id) => {
+      const title = this.dbFileContent[id].title
+      const done = this.dbFileContent[id].done ? '[x]' : '[ ]'
+      tasks += `\n#${id}\t${done}\t${title}`
     })
     return tasks
   }

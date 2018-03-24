@@ -6,25 +6,20 @@ $argv2 = $argv[2];
 $argv3 = $argv[3];
 
 $result = '';
-switch ($argv1) {
-  case '-a':
-  case '--add':
-    $result = $todo->addTask($argv2);
-    break;
-  case '-l':
-  case '--list':
-    $result = $todo->listTasks();
-    break;
-  case '-u':
-  case '--update':
-    $result = $todo->updateTask($argv2, $argv3);
-    break;
-  case '-d':
-  case '--delete':
-    $result = $todo->deleteTask($argv2);
-    break;
-  default:
-    $result = '
+if ($argv1 === '-a' || $argv1 === '--add') {
+  $result = $todo->addTask($argv2);
+} elseif ($argv1 === '-l' || $argv1 === '--list') {
+  $result = $todo->listTasks();
+} elseif ($argv1 === '-e' || $argv1 === '--edit') {
+  $result = $todo->editTask($argv2, $argv3);
+} elseif ($argv1 === '-d' || $argv1 === '--done') {
+  $result = $todo->markAsDone($argv2);
+} elseif ($argv1 === '-u' || $argv1 === '--undone') {
+  $result = $todo->markAsUndone($argv2);
+} elseif ($argv1 === '-r' || $argv1 === '--remove') {
+  $result = $todo->removeTask($argv2);
+} else {
+  $result = '
 Available commands:
 
 Add new task:
@@ -33,15 +28,21 @@ $ php app.php -a|--add "<taskTitle>"
 List all tasks:
 $ php app.php -l|--list
 
-Update task:
-$ php app.php -u|--update <taskId> "<taskTitle>"
+Edit task:
+$ php app.php -e|--edit <taskId> "<taskTitle>"
 
-Delete task:
-$ php app.php -d|--delete <taskId>
+Mark as done:
+$ php app.php -d|--done <taskId>
 
-Available commands:
+Mark as undone:
+$ php app.php -u|--undone <taskId>
+
+Remove task:
+$ php app.php -r|--remove <taskId>
+
+This screen:
 $ php app.php
-    ';
+  ';
 }
 
 echo $result . "\n";

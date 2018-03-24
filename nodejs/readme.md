@@ -8,11 +8,17 @@ Add new task:
 List all tasks:
 `$ node app.js -l|--list`
 
-Update task:
-`$ node app.js -u|--update <taskId> "<taskTitle>"`
+Edit task:
+`$ node app.js -e|--edit <taskId> "<taskTitle>"`
 
-Delete task:
-`$ node app.js -d|--delete <taskId>`
+Mark as done:
+`$ node app.js -d|--done <taskId>`
 
-Available commands:
+Mark as undone:
+`$ node app.js -u|--undone <taskId>`
+
+Remove task:
+`$ node app.js -r|--remove <taskId>`
+
+This screen:
 `$ node app.js`

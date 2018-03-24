@@ -8,11 +8,17 @@ Add new task:
 List all tasks:
 `$ php app.php -l|--list`
 
-Update task:
-`$ php app.php -u|--update <taskId> "<taskTitle>"`
+Edit task:
+`$ php app.php -e|--edit <taskId> "<taskTitle>"`
 
-Delete task:
-`$ php app.php -d|--delete <taskId>`
+Mark as done:
+`$ php app.php -d|--done <taskId>`
 
-Available commands:
+Mark as undone:
+`$ php app.php -u|--undone <taskId>`
+
+Remove task:
+`$ php app.php -r|--remove <taskId>`
+
+This screen:
 `$ php app.php`
