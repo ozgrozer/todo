@@ -22,7 +22,7 @@ class Todo:
       return '{}'
 
   def addTask (self, taskTitle):
-    lastKey = int(self.dbFileContent.keys()[-1]) if self.dbFileContent else 0
+    lastKey = int(sorted(self.dbFileContent.keys())[-1]) if self.dbFileContent else 0
     newTaskId = (lastKey + 1) if lastKey else 1
     self.dbFileContent[newTaskId] = { 'title': taskTitle, 'done': 0 }
     return 'added: {0}'.format(taskTitle) if self.writeFile() else 'error'
