@@ -8,13 +8,17 @@ argv3 = sys.argv[3] if len(sys.argv) > 3 else ''
 
 result = ''
 if argv1 == '-a' or argv1 == '--add':
-  result = todo.addTask('argv2')
+  result = todo.addTask(argv2)
 elif argv1 == '-l' or argv1 == '--list':
   result = todo.listTasks()
-elif argv1 == '-u' or argv1 == '--update':
-  result = todo.updateTask(argv2, argv3)
-elif argv1 == '-d' or argv1 == '--delete':
-  result = todo.deleteTask(argv2)
+elif argv1 == '-e' or argv1 == '--edit':
+  result = todo.editTask(argv2, argv3)
+elif argv1 == '-d' or argv1 == '--done':
+  result = todo.markAsDone(argv2)
+elif argv1 == '-u' or argv1 == '--undone':
+  result = todo.markAsUndone(argv2)
+elif argv1 == '-r' or argv1 == '--remove':
+  result = todo.removeTask(argv2)
 else:
   result = """
 Available commands:
@@ -25,13 +29,19 @@ $ python app.py -a|--add "<taskTitle>"
 List all tasks:
 $ python app.py -l|--list
 
-Update task:
-$ python app.py -u|--update <taskId> "<taskTitle>"
+Edit task:
+$ python app.py -e|--edit <taskId> "<taskTitle>"
 
-Delete task:
-$ python app.py -d|--delete <taskId>
+Mark as done:
+$ python app.py -d|--done <taskId>
 
-Available commands:
+Mark as undone:
+$ python app.py -u|--undone <taskId>
+
+Remove task:
+$ python app.py -r|--remove <taskId>
+
+This screen:
 $ python app.py
   """
 

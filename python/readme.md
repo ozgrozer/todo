@@ -1,4 +1,4 @@
-# nodejs
+# python
 
 Available commands:
 
@@ -8,11 +8,17 @@ Add new task:
 List all tasks:
 `$ python app.py -l|--list`
 
-Update task:
-`$ python app.py -u|--update <taskId> "<taskTitle>"`
+Edit task:
+`$ python app.py -e|--edit <taskId> "<taskTitle>"`
 
-Delete task:
-`$ python app.py -d|--delete <taskId>`
+Mark as done:
+`$ python app.py -d|--done <taskId>`
 
-Available commands:
+Mark as undone:
+`$ python app.py -u|--undone <taskId>`
+
+Remove task:
+`$ python app.py -r|--remove <taskId>`
+
+This screen:
 `$ python app.py`
