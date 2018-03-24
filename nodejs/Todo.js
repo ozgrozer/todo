@@ -7,8 +7,8 @@ class Todo {
   }
 
   writeFile (fileContent) {
-    fileContent = fileContent || this.dbFileContent
-    fs.writeFileSync(this.dbFilePath, JSON.stringify(fileContent), (err) => {
+    fileContent = fileContent || JSON.stringify(this.dbFileContent)
+    fs.writeFileSync(this.dbFilePath, fileContent, (err) => {
       if (err) throw err
     })
     return true
@@ -18,7 +18,7 @@ class Todo {
     if (fs.existsSync(this.dbFilePath)) {
       return fs.readFileSync(this.dbFilePath, 'utf8')
     } else {
-      this.writeFile({})
+      this.writeFile('{}')
       return '{}'
     }
   }

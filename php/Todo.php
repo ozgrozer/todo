@@ -6,8 +6,8 @@ class Todo {
   }
 
   function writeFile ($fileContent = '') {
-    $fileContent = $fileContent ? $fileContent : $this->dbFileContent;
-    if (file_put_contents($this->dbFilePath, json_encode($fileContent))) {
+    $fileContent = $fileContent ? $fileContent : json_encode($this->dbFileContent);
+    if (file_put_contents($this->dbFilePath, $fileContent)) {
       return true;
     } else {
       return false;
