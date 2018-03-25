@@ -24,8 +24,8 @@ class Todo {
   }
 
   addTask (taskTitle) {
-    const lastKey = parseInt(Object.keys(this.dbFileContent).pop())
-    const newTaskId = lastKey ? (lastKey + 1) : 1
+    const biggestKey = parseInt(Object.keys(this.dbFileContent).pop())
+    const newTaskId = biggestKey ? (biggestKey + 1) : 1
     this.dbFileContent[newTaskId] = { title: taskTitle, done: 0 }
     return this.writeFile() ? `added: ${taskTitle}` : 'error'
   }
